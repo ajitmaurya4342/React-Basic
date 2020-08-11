@@ -43,14 +43,55 @@ class App extends React.Component {
     this.setColor();
     
   }
+
+ 
   render() {
+  
+    var foo = Array.from(Array(10).keys());
+    console.log(foo);
+  
+    
     return (
       <div>
         <input type="text" value={this.state.colorName} onChange={(e) => this.setState({ colorName: e.target.value })} />
-        <button  onClick={this.setColor}>Submit</button>
+        <button onClick={this.setColor}>Submit</button>
+        
       <h1> My Favorite Color is {
         this.state.favoritecolor
         } </h1>
+        <table>
+          
+         
+         
+          {
+            foo.reverse().map((x, index) => {
+              
+               let newArray1 = (x + 1) % 2 === 0;
+              let newArray = newArray1?(x*10):(x + 1) * 10;
+             
+              return (
+                <tr>
+                  
+                  {
+                    foo.map((y, index1) => {
+                      let newVal = newArray1 ? newArray + (y+1) : newArray - y;
+                     
+                     return (<th> {
+                       newVal
+                     } </th>)
+                  }
+                   
+                  ) }
+                 
+                  </tr>
+                  
+           
+              )
+            })}
+          
+          
+         
+        </table>
         <div style={{display: "flex"}}></div>
         <Box1 color = {
           this.state.Box1Color
